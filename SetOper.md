@@ -49,4 +49,24 @@ select spelersnr, functie, extract (year from begin_datum)
 from bestuursleden
 order by 3,1
 ```
+Geef voor de spelers die bestuurslid en/of teamkapitein zijn hun naam en een oplijsting van hun functienamen (huidig of verleden) en hun divisies waarvoor ze kapitein zijn.
+Sorteer op spelersnaam en naam.
+Gebruik geen OUTER JOIN of WHERE.
 
+```sql
+select 'bestuursleden' as "label" , count(spelersnr) as aantal
+from bestuursleden
+union
+select 'boetes' as "label" , count(spelersnr) as aantal
+from boetes
+union
+select 'spelers' as "label" , count(spelersnr) as aantal
+from spelers
+union
+select 'teams' as "label" , count(spelersnr) as aantal
+from teams
+union
+select 'wedstrijden' as "label" , count(spelersnr) as aantal
+from wedstrijden
+order by 1
+```
